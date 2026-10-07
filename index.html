@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NYC Recommendations</title>
+    <link
+      href="https://unpkg.com/maplibre-gl@^5.6.1/dist/maplibre-gl.css"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <script src="https://unpkg.com/maplibre-gl@^5.6.1/dist/maplibre-gl.js"></script>
+  </head>
+  <body>
+    <a class="home-button" href="index.html" aria-label="Go to homepage">
+      <span class="home-icon" aria-hidden="true"></span>
+    </a>
+    <div id="map"></div>
+    <div class="view-toggle" aria-label="view">
+      <button type="button" data-view="map" class="is-active" aria-pressed="true">
+        map
+      </button>
+      <button type="button" data-view="list" aria-pressed="false">list</button>
+    </div>
+    <div
+      class="category-filter"
+      id="category-filter-panel"
+      aria-label="category filter"
+    >
+      <div class="category-filter__header">
+        <span class="category-filter__title">categories</span>
+        <div class="category-filter__header-actions">
+          <button
+            class="category-filter__all is-active"
+            type="button"
+            aria-pressed="true"
+          >
+            all
+          </button>
+          <button
+            class="category-filter__close"
+            type="button"
+            aria-label="Close categories"
+            aria-controls="category-filter-panel"
+          >
+            ×
+          </button>
+        </div>
+      </div>
+      <div class="category-filter__options">
+        <label>
+          <input type="checkbox" value="Restaurants and Food" checked />
+          restaurants and food
+        </label>
+        <label>
+          <input type="checkbox" value="Bars" checked />
+          bars
+        </label>
+        <label>
+          <input type="checkbox" value="Things" checked />
+          things
+        </label>
+        <label>
+          <input type="checkbox" value="Cafes and Desserts" checked />
+          cafes and desserts
+        </label>
+        <label>
+          <input type="checkbox" value="Museum & things" checked />
+          museum &amp; film
+        </label>
+        <label>
+          <input type="checkbox" value="Jazz" checked />
+          jazz
+        </label>
+        <label>
+          <input type="checkbox" value="Usable Shops and Markets" checked />
+          usable shops and markets
+        </label>
+        <label>
+          <input type="checkbox" value="Bookstores" checked />
+          bookstores
+        </label>
+      </div>
+      <div class="borough-filter" aria-label="borough filter">
+        <span>borough</span>
+        <div class="borough-filter__options">
+          <button type="button" data-borough="" aria-pressed="true" class="is-active">all</button>
+          <button type="button" data-borough="Manhattan" aria-pressed="false">manhattan</button>
+          <button type="button" data-borough="Brooklyn" aria-pressed="false">brooklyn</button>
+          <button type="button" data-borough="Queens" aria-pressed="false">queens</button>
+          <button type="button" data-borough="Bronx" aria-pressed="false">bronx</button>
+          <button type="button" data-borough="Staten Island" aria-pressed="false">staten island</button>
+        </div>
+      </div>
+      <label class="neighborhood-filter">
+        neighborhood
+        <select id="neighborhood-filter">
+          <option value="">all neighborhoods</option>
+        </select>
+      </label>
+    </div>
+    <button
+      class="category-filter-toggle"
+      type="button"
+      aria-controls="category-filter-panel"
+      aria-expanded="false"
+      hidden
+    >
+      categories
+    </button>
+    <div class="map-mood" aria-label="Map Mood">
+      <span class="map-mood__label">map mood</span>
+      <div class="map-mood__swatches">
+        <button
+          class="map-mood__swatch map-mood__swatch--pink-teal is-active"
+          type="button"
+          data-style="style-pink-teal.json"
+          data-land-color="#08939B"
+          data-road-color="#EC3765"
+          aria-label="Pink and Teal map mood"
+          aria-pressed="true"
+          title="Pink / Teal"
+        ></button>
+        <button
+          class="map-mood__swatch map-mood__swatch--orange-blue"
+          type="button"
+          data-style="style-orange-blue.json"
+          data-land-color="#6E8CB1"
+          data-road-color="#FFB046"
+          aria-label="Orange and Blue map mood"
+          aria-pressed="false"
+          title="Orange / Blue"
+        ></button>
+        <button
+          class="map-mood__swatch map-mood__swatch--red-navy"
+          type="button"
+          data-style="style-red-navy.json"
+          data-land-color="#01303D"
+          data-road-color="#E8434E"
+          aria-label="Red and Navy map mood"
+          aria-pressed="false"
+          title="Red / Navy"
+        ></button>
+        <button
+          class="map-mood__swatch map-mood__swatch--lime-blue"
+          type="button"
+          data-style="style-lime-blue.json"
+          data-land-color="#4F8394"
+          data-road-color="#A4E83E"
+          aria-label="Lime and Blue map mood"
+          aria-pressed="false"
+          title="Lime / Blue"
+        ></button>
+      </div>
+    </div>
+    <section class="list-view" aria-label="filtered recommendations" hidden>
+      <div class="list-view__content"></div>
+    </section>
+    <script src="main.js"></script>
+  </body>
+</html>
